@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Get a Quote — Sparkes Mobile Detailing"
+  description="Tell us about your car. We'll text you back within a few hours to lock in a slot."
+>
+
+  <div class="page contact">
+
+    <div class="contact-head">
+      <span class="kicker">Booking · We come to you</span>
+      <h1>Hey, come wash<br/>my car!</h1>
+      <p>
+        Tell us about the car and where it lives. We'll text you back to lock
+        in a slot — usually within a few hours during business hours.
+      </p>
+    </div>
+
+    <form
+      class="form-card"
+      name="sparkes-quote"
+      method="POST"
+      action="/contact/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="sparkes-quote" />
+      <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" required placeholder="Alex Sparks" />
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required placeholder="alex@email.com" />
+        </div>
+
+        <div class="field">
+          <label for="f-phone">Mobile</label>
+          <input id="f-phone" name="phone" type="tel" required placeholder="(555) 010 0199" />
+        </div>
+
+        <div class="field">
+          <label for="f-addr">Service address</label>
+          <input id="f-addr" name="address" type="text" required placeholder="221B Driveway Lane" />
+        </div>
+
+        <div class="field">
+          <label for="f-city">City</label>
+          <input id="f-city" name="city" type="text" required placeholder="Kingsport" />
+        </div>
+
+        <div class="field">
+          <label for="f-state">State</label>
+          <input id="f-state" name="state" type="text" required placeholder="TN" maxlength="2" style="text-transform:uppercase" />
+        </div>
+
+        <div class="field">
+          <label for="f-car">Year, make &amp; model</label>
+          <input id="f-car" name="car" type="text" required placeholder="2019 Porsche 911 GT3 Touring" />
+        </div>
+
+        <div class="field">
+          <label for="f-color">Paint colour / finish</label>
+          <input id="f-color" name="color" type="text" placeholder="Crayon · single-stage · satin PPF" />
+        </div>
+
+        <div class="field">
+          <label for="f-date">Preferred date</label>
+          <input id="f-date" name="date" type="date" />
+        </div>
+
+        <div class="field">
+          <label for="f-time">Time of day</label>
+          <select id="f-time" name="time">
+            <option value="morning">Morning (8 – 11)</option>
+            <option value="midday">Midday (11 – 2)</option>
+            <option value="afternoon">Afternoon (2 – 5)</option>
+            <option value="flexible">Flexible — surprise me</option>
+          </select>
+        </div>
+
+        <div class="pkg-row" role="radiogroup" aria-label="Package">
+
+          <label class="pkg">
+            <input type="radio" name="package" value="Maintenance Wash" checked />
+            <div class="pkg-name">Maintenance Wash</div>
+            <div class="pkg-price">$180<small> /visit</small></div>
+            <div class="pkg-desc">Two-bucket hand wash, wheels, glass, interior wipe, tire dressing. ~2 hrs.</div>
+          </label>
+
+          <label class="pkg">
+            <input type="radio" name="package" value="Full Detail" />
+            <div class="pkg-name">Full Detail</div>
+            <div class="pkg-price">$480<small> /visit</small></div>
+            <div class="pkg-desc">Decon + clay + single-stage polish. Interior shampoo, leather feed, engine bay. ~6 hrs.</div>
+          </label>
+
+          <label class="pkg">
+            <input type="radio" name="package" value="Coating Prep" />
+            <div class="pkg-name">Coating Prep</div>
+            <div class="pkg-price">$1,450<small> from</small></div>
+            <div class="pkg-desc">Multi-stage paint correction + Gyeon or CQuartz application. 1–2 days.</div>
+          </label>
+
+        </div>
+
+        <div class="field full">
+          <label for="f-notes">Anything we should know?</label>
+          <textarea id="f-notes" name="notes" placeholder="Bird strike on the hood, ceramic coating from last year, gated community gate code, garaged or curbside — the more the better."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <p class="fine">
+            We respond by SMS within a few hours. No deposit needed for first-time bookings under $500.
+            Cancellations are free up to 24 hrs before your slot.
+          </p>
+          <button class="submit" type="submit">
+            Send the bucket
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/>
+              <path d="M13 6l6 6-6 6"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+    <div style="text-align:center; margin-top:28px;">
+      <span class="bucket-tag"><span class="dot"></span>or call (865) 314-7405 · sparkesautodetailing@gmail.com</span>
+    </div>
+
+  </div>
+
+  <style>
+    /* Package card checked state — native radio drives the highlight */
+    .pkg:has(input:checked) {
+      border-color: rgba(34, 211, 238, 0.7);
+      background: linear-gradient(180deg, rgba(34,211,238,.10), rgba(34,211,238,.03));
+      box-shadow: 0 0 0 4px rgba(34,211,238,.10);
+    }
+  </style>
+
+</BaseLayout>
