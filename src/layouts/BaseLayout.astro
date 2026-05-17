@@ -816,6 +816,10 @@ function isActive(href: string): boolean {
     </nav>
   </header>
 
+  <!-- React component library scripts (loaded before slot so components are available to page init scripts) -->
+  <script is:inline type="text/babel" src="/bubbles.jsx"></script>
+  <script is:inline type="text/babel" src="/logo.jsx"></script>
+
   <!-- Page content -->
   <slot />
 

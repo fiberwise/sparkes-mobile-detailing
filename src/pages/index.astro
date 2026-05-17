@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <div class="page">
     <section class="hero">
-      <div class="bubble-field" id="hero-bubbles"></div>
+      <div id="hero-bubbles-mount"></div>
 
       <div class="hero-eyebrow">
         <span class="dot"></span>
@@ -17,6 +17,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="lockup">
         <img src="/assets/sparkes-logo.png" class="sparkes-logo" alt="Sparkes Mobile Detailing" />
+        <div class="lockup-sub">
+          <span class="bar"></span>
+          <span>Mobile Detailing</span>
+          <span class="bar"></span>
+        </div>
       </div>
 
       <p style="margin-top: 36px; max-width: 620px; color: var(--ink-soft); font-size: 18px; line-height: 1.6; text-wrap: pretty;">
@@ -33,6 +38,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <a href="/about" class="btn btn-ghost">How it works →</a>
       </div>
     </section>
+
+    <script is:inline type="text/babel">
+      (function() {
+        var mount = document.getElementById('hero-bubbles-mount');
+        if (mount && window.BubbleField) {
+          ReactDOM.createRoot(mount).render(React.createElement(window.BubbleField, { density: 28, popChance: 0.3 }));
+        }
+      })();
+    </script>
 
     <div class="road"></div>
 
