@@ -1,0 +1,26 @@
+---
+interface Props {
+  count?: number;
+  popChance?: number;
+}
+const { count = 20, popChance = 0.25 } = Astro.props;
+
+const bubbles = Array.from({ length: count }, (_, i) => {
+  const size    = 8 + Math.random() * 60;
+  const left    = Math.random() * 100;
+  const dur     = 9  + Math.random() * 10;
+  const delay   = -Math.random() * dur;
+  const drift   = Math.random() * 80 - 40;
+  const pop     = Math.random() < popChance;
+  return { size, left, dur, delay, drift, pop, id: i };
+});
+---
+
+<div class="bubble-field" aria-hidden="true">
+  {bubbles.map(b => (
+    <span
+      class={`bubble${b.pop ? ' pop' : ''}`}
+      style={`width:${b.size.toFixed(1)}px;height:${b.size.toFixed(1)}px;left:${b.left.toFixed(1)}%;--dur:${b.dur.toFixed(1)}s;--delay:${b.delay.toFixed(1)}s;--drift:${b.drift.toFixed(1)}px`}
+    />
+  ))}
+</div>

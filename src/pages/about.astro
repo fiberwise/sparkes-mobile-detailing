@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BubbleField from '../components/BubbleField.astro';
 ---
 
 <BaseLayout
@@ -7,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Small, owner-operated mobile detailing serving East Tennessee from Knoxville to Bristol."
 >
   <div class="page about">
-    <div class="bubble-field" id="about-bubbles"></div>
+    <BubbleField count={11} popChance={0.15} />
 
     <h1>We treat your car<br/>like <em>ours</em>.</h1>
 

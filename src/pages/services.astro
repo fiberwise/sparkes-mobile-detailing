@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BubbleField from '../components/BubbleField.astro';
 ---
 
 <BaseLayout
@@ -7,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Maintenance washes, full details, paint correction, and ceramic coatings. Mobile — we come to you."
 >
   <div class="page services">
-    <div class="bubble-field" id="services-bubbles"></div>
+    <BubbleField count={14} popChance={0.18} />
 
     <div class="services-head">
       <span class="kicker">Menu · We come to you</span>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BubbleField from '../components/BubbleField.astro';
 ---
 
 <BaseLayout
@@ -8,6 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
 
   <div class="page contact">
+    <BubbleField count={14} popChance={0.2} />
 
     <div class="contact-head">
       <span class="kicker">Booking · We come to you</span>
@@ -140,7 +142,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <style>
-    /* Package card checked state — native radio drives the highlight */
     .pkg:has(input:checked) {
       border-color: rgba(34, 211, 238, 0.7);
       background: linear-gradient(180deg, rgba(34,211,238,.10), rgba(34,211,238,.03));

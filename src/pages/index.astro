@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BubbleField from '../components/BubbleField.astro';
 ---
 
 <BaseLayout
@@ -8,7 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <div class="page">
     <section class="hero">
-      <div id="hero-bubbles-mount"></div>
+      <BubbleField count={28} popChance={0.3} />
 
       <div class="hero-eyebrow">
         <span class="dot"></span>
@@ -39,15 +40,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <script is:inline type="text/babel">
-      (function() {
-        var mount = document.getElementById('hero-bubbles-mount');
-        if (mount && window.BubbleField) {
-          ReactDOM.createRoot(mount).render(React.createElement(window.BubbleField, { density: 28, popChance: 0.3 }));
-        }
-      })();
-    </script>
-
     <div class="road"></div>
 
     <section class="strip">
@@ -57,7 +49,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       <div>
         <h4>02 · pH-neutral chemistry</h4>
-        <p>Gyeon, Koch-Chemie, P&amp;S — products chosen for paint, leather and chrome, not the price tag.</p>
+        <p>Gyeon, Koch-Chemie, P&S — products chosen for paint, leather and chrome, not the price tag.</p>
       </div>
       <div>
         <h4>03 · Two-bucket, microfibre</h4>
