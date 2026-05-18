@@ -130,8 +130,10 @@ function isActive(href: string): boolean {
     .nav--open .nav-burger span:nth-child(2){ opacity:0 }
     .nav--open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(-45deg) }
 
+    .nav-links{ display:flex; gap:6px; align-items:center }
+
     @media (max-width:680px){
-      .nav{ padding:14px 20px; position:relative }
+      .nav{ padding:14px 20px }
       .nav-burger{ display:flex }
       .nav-links{
         display:none;
@@ -150,8 +152,6 @@ function isActive(href: string): boolean {
       .nav-contact{ display:none !important }
       .nav-mark .nm-sub{ display:none }
     }
-
-    .nav-links{ display:flex; gap:6px; align-items:center }
     .nav-link{
       appearance:none; border:0; background:transparent;
       font:inherit; color:var(--ink-soft);
