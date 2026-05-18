@@ -20,11 +20,25 @@ import BubbleField from '../components/BubbleField.astro';
       </p>
     </div>
 
+    <div id="success-msg" class="form-card sent" style="display:none">
+      <div class="sent-orb"></div>
+      <h2>Message in the bucket.</h2>
+      <p>We'll text you within a few hours to confirm a time and quote the job. In the meantime, give it a rinse so we have less work to do. (Kidding. Mostly.)</p>
+      <p style="font-size:13px; color:var(--ink-mute); max-width:44ch; margin-top:4px;">
+        A reminder: quoted pricing is an estimate. Final price may be adjusted based on the actual condition of your vehicle when we arrive.
+      </p>
+      <div style="display:flex; gap:12px; margin-top:8px; flex-wrap:wrap; justify-content:center;">
+        <a href="/contact" class="btn btn-ghost">Send another</a>
+        <a href="/" class="btn btn-primary">Back to home</a>
+      </div>
+    </div>
+
     <form
+      id="quote-form"
       class="form-card"
       name="sparkes-quote"
       method="POST"
-      action="/contact/"
+      action="/contact/?success=true"
       data-netlify="true"
       netlify-honeypot="bot-field"
     >
@@ -122,6 +136,7 @@ import BubbleField from '../components/BubbleField.astro';
           <p class="fine">
             We respond by SMS within a few hours. No deposit needed for first-time bookings under $500.
             Cancellations are free up to 24 hrs before your slot.
+            <br/><em>Pricing is an estimate — final price may be adjusted based on the actual condition of your vehicle when we arrive.</em>
           </p>
           <button class="submit" type="submit">
             Send the bucket
@@ -140,6 +155,15 @@ import BubbleField from '../components/BubbleField.astro';
     </div>
 
   </div>
+
+  <script is:inline>
+    if (window.location.search.includes('success=true')) {
+      var form = document.getElementById('quote-form');
+      var msg  = document.getElementById('success-msg');
+      if (form) form.style.display = 'none';
+      if (msg)  msg.style.display  = 'flex';
+    }
+  </script>
 
   <style>
     .pkg:has(input:checked) {
