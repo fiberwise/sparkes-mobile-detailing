@@ -84,7 +84,28 @@ import BubbleField from '../components/BubbleField.astro';
 
         <div class="field">
           <label for="f-color">Paint colour / finish</label>
-          <input id="f-color" name="color" type="text" placeholder="Crayon · single-stage · satin PPF" />
+          <input id="f-color" name="color" type="text" placeholder="Guards Red · single-stage lacquer" />
+        </div>
+
+        <div class="field full coatings-field">
+          <span class="coatings-label">Protective coatings on the car? <em>Check all that apply.</em></span>
+          <div class="check-group">
+            <label class="check-row" id="ppf-row">
+              <input type="checkbox" name="has_ppf" value="yes" id="ppf-check" />
+              <span class="check-box"></span>
+              <span>Paint protection film (PPF)</span>
+            </label>
+            <label class="check-row check-sub" id="satin-row" style="display:none">
+              <input type="checkbox" name="ppf_satin" value="yes" />
+              <span class="check-box"></span>
+              <span>Satin finish PPF</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="has_ceramic" value="yes" />
+              <span class="check-box"></span>
+              <span>Ceramic coating</span>
+            </label>
+          </div>
         </div>
 
         <div class="field">
@@ -157,6 +178,10 @@ import BubbleField from '../components/BubbleField.astro';
   </div>
 
   <script is:inline>
+    document.getElementById('ppf-check').addEventListener('change', function() {
+      document.getElementById('satin-row').style.display = this.checked ? 'flex' : 'none';
+    });
+
     if (window.location.search.includes('success=true')) {
       var form = document.getElementById('quote-form');
       var msg  = document.getElementById('success-msg');
@@ -165,11 +190,55 @@ import BubbleField from '../components/BubbleField.astro';
     }
   </script>
 
-  <style>
+  <style is:global>
     .pkg:has(input:checked) {
       border-color: rgba(34, 211, 238, 0.7);
       background: linear-gradient(180deg, rgba(34,211,238,.10), rgba(34,211,238,.03));
       box-shadow: 0 0 0 4px rgba(34,211,238,.10);
+    }
+
+    .coatings-field { gap: 12px }
+    .coatings-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .coatings-label em { font-style: normal; font-weight: 400; text-transform: none; letter-spacing: 0; }
+    .check-group { display: flex; flex-direction: column; gap: 10px }
+    .check-row {
+      display: flex; align-items: center; gap: 12px;
+      cursor: pointer;
+      font-size: 15px; color: var(--ink);
+      padding: 10px 14px;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: rgba(255,255,255,.02);
+      transition: border .15s, background .15s;
+      user-select: none;
+    }
+    .check-row:hover { border-color: rgba(34,211,238,.35); background: rgba(34,211,238,.04) }
+    .check-row input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0 }
+    .check-box {
+      flex: 0 0 18px; height: 18px; border-radius: 5px;
+      border: 1.5px solid var(--line);
+      background: rgba(0,0,0,.25);
+      display: flex; align-items: center; justify-content: center;
+      transition: border .15s, background .15s;
+    }
+    .check-row input[type="checkbox"]:checked ~ .check-box {
+      background: linear-gradient(135deg, #22d3ee, #3b82f6);
+      border-color: transparent;
+    }
+    .check-row input[type="checkbox"]:checked ~ .check-box::after {
+      content: "";
+      width: 10px; height: 6px;
+      border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translate(1px, -1px);
+      display: block;
+    }
+    .check-row input[type="checkbox"]:checked ~ span:last-child { color: var(--cyan-bright) }
+    .check-sub {
+      margin-left: 28px;
+      font-size: 13px;
+      border-style: dashed;
     }
   </style>
 
